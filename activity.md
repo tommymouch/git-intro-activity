@@ -104,363 +104,184 @@ consider changing this configuration before you walk away.
     ```
 
 F. Create a repository
-----------------------
-
 From the command line, run the following commands.
 
-```
+bash
+Copy
+Edit
 mkdir first_project
 cd first_project
-```
+1. By default, any file that starts with . is hidden. How do you display a hidden file?
+On Mac/Linux, run:
 
-1.  By default any file that starts with `.` is hidden. How do you
-    display a hidden file?
+bash
+Copy
+Edit
+ls -a
+On Windows (Git Bash), run:
 
-    ```
-
-
-    ```
-
+bash
+Copy
+Edit
+ls -la
 2. Run this command to show the hidden files in the current directory. Are there any?
-
-    ```
-
-
-
-    ```
+Before running git init, there are no hidden Git-related files.
 
 3. Now run the following command.
+csharp
+Copy
+Edit
+git init
+4. Check for hidden files again. What was created by git init?
+A hidden .git directory was created, which contains all Git metadata and version control history.
 
-    ```
-    git init
-    ```
+5. What do you think would happen if you delete .git?
+Deleting .git will remove all version history, making the project no longer a Git repository.
 
+6. Using your observations from previous questions, how can you determine if a project is managed using Git?
+Run:
 
-4. Check for hidden files again.  What was created by `git init`?
+bash
+Copy
+Edit
+ls -a
+If there is a .git directory, it is a Git repository. Alternatively, running:
 
-    ```
-
-
-
-    ```
-
-
-3.  What do you think would happen if you delete `.git`?
-
-    ```
-
-
-
-    ```
-
-4.  Using your observations to the previous questions, answer the following.
-    You find an old project on your hard drive. You do not remember if
-    it is a under version control. What could you look for to determine
-    if the project is being managed using Git?
-
-    ```
-
-
-
-    ```
+lua
+Copy
+Edit
+git status
+will confirm if the directory is under version control.
 
 G. Basic commands
------------------
+Use a plain text editor to create names.txt inside the first_project folder. Put the names of your team in the file. Save and exit.
 
-Use a plain text editor to create `names.txt` inside the `first_project`
-folder. Put the names of your team in the file. Save and exit.
+Run git status before and after each of these commands.
 
-Run `git status` before and after each of these commands.
+pgsql
+Copy
+Edit
+git add names.txt
+git commit -m "Add our names."
+git log
+1. What kind of information does git status report?
+It shows the state of the working directory and staging area, indicating which files are modified, staged, or untracked.
 
-    git add names.txt
-    git commit –m “Add our names.”
-    git log
+2. What does git add names.txt do?
+It stages names.txt for the next commit.
 
-1.  What kind of information does `git status` report?
-
-    ```
-
-
-
-    ```
-
-2.  What does `git add names.txt` do?
-
-    ```
-
-
-
-    ```
-
-3.  What does `git commit -m "Add our names."` do?
-
-    ```
-
-
-
-    ```
+3. What does git commit -m "Add our names." do?
+It commits the staged changes with the message "Add our names.", creating a new version in the repository.
 
 Use a plain text editor to create the following files:
 
--   `birthdays.txt` - Put your birthdays in this file.
+birthdays.txt - Put your birthdays in this file.
+movies.txt - Put the last movie each of you watched in alphabetical order.
+Run git status before and after each of these commands.
 
--   `movies.txt` - Put the last movie each of you watched in alphabetical order.
+pgsql
+Copy
+Edit
+git add .
+git commit
+git log
+4. What does git add . do? What do you think . means?
+git add . stages all changes (new, modified, or deleted files) in the current directory. The . refers to the entire directory.
 
-Run `git status` before and after each of these commands.
+5. What does git commit (without -m) do?
+It opens the default text editor for writing a multi-line commit message.
 
-    git add .
-    git commit		Note:  Commit will open the vim editor; write a multi-line commit
-						   message, save and quit (press esc and then type :wq).
-    git log
+6. If you want to write a more detailed commit message, what command would you use?
+Use:
 
-4.  What does `git add .` do? What do you think `.` means?
+sql
+Copy
+Edit
+git commit
+This opens an editor for writing a multi-line commit message.
 
-    ```
-
-
-
-    ```
-
-5.  What does `git commit` (without -m) do?
-
-    ```
-
-
-
-    ```
-
-6.  If you want to write a more detailed commit message (which is
-    good practice) what command would you use?
-
-    ```
-
-
-
-    ```
-
-7.  What does `git log` do?
-
-    ```
-
-
-
-    ```
-
+7. What does git log do?
+It displays the commit history, including commit messages, authors, and timestamps.
 
 H. Stage/Cache/Index
---------------------
-
-Do the following:
-
--   Modify `names.txt` so that names are listed in *Last, First* format,
-    one per line.
-
--   Modify `movies.txt` so they are in reverse alphabetical order
-    by title.
-
--   Create a new file `foods.txt` that contains your favorite foods (one
-    for each team member).
-
-Run the following commands:
-
-    git add names.txt
-    git status
-
-1.  Categorize the state of each file by writing each file name under the appropriate state below. Compose a definition for each state.
-
-    **Staged**
-
-    ```
-
-
-
-    ```
-
-    **Unstaged**
-
-    ```
-
-
-
-    ```
-
-    **Untracked**
-
-    ```
-
-
-
-    ```
-
-1.  If you run `git commit` what changes will be committed (***don't do
-    it***)?
-
-    ```
-
-
-
-    ```
-
-2.  What command do you run to stage changes?
-
-    ```
-
-
-
-    ```
-
-3.  What command do you run to unstage changes?
-
-    ```
-
-
-
-    ```
-
-Run the following commands:
-
-    git diff
-    git diff --cached
-
-1.  What does `git diff` display?
-
-    ```
-
-
-
-    ```
-
-2.  What does `git diff --cached` display?
-
-    ```
-
-
-
-    ```
-
-3.  Formulate a sequence of commands to unstage changes to `names.txt`,
-    and stage the changes to `movies.txt`. Execute your commands and
-    confirm they worked.
-
-    ```
-
-
-
-    ```
-
-4.  Edit `movies.txt`, change any one of the movies, and save it. Then
-    run `git status`. What do you observe? Explain what you think is
-    going on.
-
-    ```
-
-
-
-    ```
-
-5.  Delete `names.txt`. Then run `git status`. What do you observe?
-    Explain what you think is going on.
-
-    ```
-
-
-
-    ```
-
-6.  Rename `movies.txt` to `last-movies`. Run `git status`. Observe
-    and explain.
-
-    ```
-
-
-
-    ```
-
-7.  Formulate a sequence of commands to stage all changes including the
-    untracked file and commit (with any reasonable message you like).
-    Execute them.
-
-    ```
-
-
-
-    ```
-
-8.  In Git vernacular, `index`, `cache`, and `stage` all refer to the
-    same thing. What does it hold?
-
-    ```
-
-
-
-    ```
-
-9.  Why have a `stage`? Why not just commit all changes since the last
-    commit?
-
-    ```
-
-
-
-    ```
+Modify names.txt and movies.txt, then create foods.txt.
+
+Run:
+
+csharp
+Copy
+Edit
+git add names.txt
+git status
+1. Categorize the state of each file:
+Staged:
+
+Copy
+Edit
+names.txt
+Unstaged:
+
+Copy
+Edit
+movies.txt
+Untracked:
+
+Copy
+Edit
+foods.txt
+2. If you run git commit, what changes will be committed?
+Only staged changes (names.txt) will be committed.
+
+3. What command do you run to stage changes?
+csharp
+Copy
+Edit
+git add <filename>
+4. What command do you run to unstage changes?
+perl
+Copy
+Edit
+git reset <filename>
+Run:
+
+css
+Copy
+Edit
+git diff
+git diff --cached
+5. What does git diff display?
+It shows differences between the working directory and the last commit.
+
+6. What does git diff --cached display?
+It shows differences between the staging area and the last commit.
 
 I. Undo
--------
+Run:
 
-Run the following commands:
+pgsql
+Copy
+Edit
+git reset --soft HEAD^
+1. What does git reset --soft HEAD^ do?
+It moves the last commit to the staging area but keeps file changes.
 
-    git log
-    git status
-    git reset --soft "HEAD^"
-    git log
-    git status
+Run:
 
-1.  What does `git reset --soft ``"HEAD^" `do?
+pgsql
+Copy
+Edit
+git reset --hard HEAD^
+2. What does git reset --hard HEAD^ do?
+It completely removes the last commit and all changes.
 
-    ```
+3. What is the difference between --hard and --soft?
+--soft keeps changes in the staging area, while --hard deletes them.
 
+4. What does HEAD refer to?
+It refers to the current commit.
 
-
-    ```
-
-Run the following commands:
-
-    git commit –m "Redo."
-    git log
-    git status
-    git reset --hard "HEAD^"
-    git log
-    git status
-
-1.  What does `git reset --hard "HEAD^"`` `do?
-
-    ```
-
-
-
-    ```
-
-2.  What is the difference between `--hard` and `--soft`?
-
-    ```
-
-
-
-    ```
-
-3.  What do you think `HEAD` means?
-
-    ```
-
-
-    ```
-
-4.  What do you think `HEAD^` means?
-
-    ```
-
-
-    ```
+5. What does HEAD^ mean?
+It refers to the previous commit.
 
 J. Helpful resources
 --------------------
